@@ -41,7 +41,7 @@
     --size-900: 5rem;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 47em) {
     :root {
         --fs-700: 3.5rem;
         --fs-600: 2.5rem;
@@ -93,7 +93,8 @@ html:focus-within {
 
 html,
 body {
-    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -227,14 +228,20 @@ p[data-width="wide"] {
     color: var(--clr-accent-400);
 }
 
-@media (max-width: 50em) {
+@media (max-width: 47em) {
+
+    .primary-header[data-overlay] {
+        position: relative;
+        z-index: 999;
+    }
+
     .primary-navigation {
         display: none;
         position: fixed;
         padding: var(--size-700);
         inset: 7rem var(--size-400) auto;
         max-width: 25rem;
-        margin-left: auto;
+        margin-inline: auto;
         background: var(--clr-neutral-100);
         border-radius: var(--size-100);
         box-shadow: 0 0 .75em rgb(0, 0, 0, 0.05);
@@ -269,10 +276,17 @@ p[data-width="wide"] {
         background: transparent;
         border: 0;
         padding: 0.5em;
+        width: 1.65rem;
+        aspect-ratio: 1;
+
+        background-image: url("images/icon-hamburger.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
-    .mobile-nav-toggle .icon-close {
-        display: none;
+    .mobile-nav-toggle[aria-expanded="true"] {
+        background-image: url("images/icon-close.svg");
     }
 }
 
@@ -320,7 +334,7 @@ input:where([type="email"]) {
     padding: var(--size-300) var(--size-400);
 }
 
-@media(min-width: 50em) {
+@media(min-width: 47em) {
     .primary-footer-wrapper {
         grid-template-areas: 'logo-social nav form';
     }
@@ -333,7 +347,7 @@ input:where([type="email"]) {
     }
 }
 
-@media(max-width: 50em) {
+@media(max-width: 47em) {
     .primary-footer-wrapper>* {
         margin-inline: auto;
     }
@@ -372,7 +386,7 @@ input:where([type="email"]) {
     fill: var(--clr-accent-400);
 }
 
-@media(min-width: 50em) {
+@media(min-width: 47em) {
     .social-icon {
         width: var(--size-500);
     }
@@ -385,7 +399,7 @@ input:where([type="email"]) {
     text-align: center;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 47em) {
     .social-list {
         display: flex;
         gap: var(--size-300);
@@ -564,6 +578,63 @@ input:where([type="email"]) {
     background: var(--clr-accent-400);
 }
 
+/* hero section */
+
+@media(max-width:50em) {
+    .hero__img {
+        /* position: relative; */
+        order: -1;
+    }
+}
+
+.hero__img::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 0;
+    width: 87%;
+    max-height: 70vh;
+    aspect-ratio: 1 / 1.2;
+    background-image: url('images/bg-tablet-pattern.svg');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+
+@media(min-width:50em) {
+    .hero__img::before {
+        width: 45%;
+    }
+}
+
+/* salespoints  */
+
+.sales-points_blob {
+    position: relative;
+}
+
+.sales-points_blob::before {
+    content: url('images/bg-tablet-pattern.svg');
+    zoom: 40%;
+    position: absolute;
+    z-index: -1;
+    left: 70%;
+    bottom: 120%;
+    width: 100px;
+}
+
+@media(min-width:47em) {
+    .sales-points_blob::before {
+        content: url('images/bg-tablet-pattern.svg');
+        zoom: 70%;
+        position: absolute;
+        z-index: -1;
+        left: -500px;
+        top: 42%;
+        width: 100px;
+    }
+}
+
 /* Utility Classes */
 
 .visually-hidden {
@@ -591,7 +662,7 @@ input:where([type="email"]) {
     gap: 1rem;
 }
 
-@media(min-width: 50em) {
+@media(min-width: 47em) {
     .even-columns {
         grid-auto-flow: column;
         grid-auto-columns: 1fr;
@@ -606,7 +677,7 @@ input:where([type="email"]) {
     justify-self: end;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 47em) {
     .justify-self-end-md {
         align-items: center;
     }
@@ -628,7 +699,7 @@ input:where([type="email"]) {
     margin-inline: auto;
 }
 
-@media (max-width: 50em) {
+@media (max-width: 47em) {
     .text-cente-sm-only {
         text-align: center;
     }
@@ -728,11 +799,15 @@ input:where([type="email"]) {
     margin-block-end: var(--size-700);
 }
 
+.mx-auto {
+    margin-inline: auto;
+}
+
 .display-sm-none {
     display: none;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 47em) {
     .display-md-inline-flex {
         display: inline-flex;
     }
